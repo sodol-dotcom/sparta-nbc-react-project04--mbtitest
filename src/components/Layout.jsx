@@ -1,4 +1,6 @@
-import { useEffect } from React;
+import { useEffect } from react;
+import { useNavigate, Link } from 'react-router-dom'; // useNavigate와 Link를 import
+
 
 const Layout = ({ children }) => {
     const navigate = useNavigate();
@@ -10,7 +12,7 @@ const Layout = ({ children }) => {
         }
     }, [user]); // user 상태가 바뀔 때마다 실행
 
-    // 로그아웃 기능 구현
+    // 로그아웃 처리 로직 추가
     // 로그아웃 버튼을 클릭하면 사용자의 로그인 정보를 삭제하고 로그인 페이지로 리디렉션
     const handleLogout = () => {
         
@@ -27,7 +29,7 @@ const Layout = ({ children }) => {
                     <div className="space-x-4">
                         {user ? (
                         <>
-                        {* 다른 페이지로 가는 버튼 필요 *}
+                        {/* 다른 페이지로 가는 버튼 필요 */}
                              <button onClick={handleLogout}>로그아웃</button>
                         </>
                         ):(
