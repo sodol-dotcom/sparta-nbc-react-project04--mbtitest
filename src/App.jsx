@@ -1,10 +1,11 @@
+import { BrowserRouter as Router } from "react-router-dom";
 import Layout from "./components/Layout";
 
 const App = () => {
   return (
-    <div>
+    <Router>
       <Layout />
-    </div>
+    </Router>
   );
 };
 export default App;
