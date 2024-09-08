@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom"; // useNavigate와 Link를 import
+import Home from '../pages/Home';
 
 const Layout = ({ children, user, setUser }) => {
   const navigate = useNavigate();
@@ -40,6 +41,7 @@ const Layout = ({ children, user, setUser }) => {
         </nav>
       </header>
       <main className="container mx-auto pt-10 main">{children}</main>
+      <Home />
     </div>
   );
 };
