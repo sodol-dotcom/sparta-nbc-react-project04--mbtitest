@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
-import Profile from './pages/Profile';
+import Profile from './pages/Profile';  // 수정된 import
 import TestPage from './pages/TestPage';
 import TestResultPage from './pages/TestResultPage';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -23,7 +23,7 @@ function App() {
             path="/profile"
             element={
               <ProtectedRoute user={user}>
-                <ProfilePage user={user} setUser={setUser} />
+                <Profile user={user} setUser={setUser} />  {/* 수정된 컴포넌트 사용 */}
               </ProtectedRoute>
             }
           />
@@ -50,4 +50,3 @@ function App() {
 }
 
 export default App;
-
