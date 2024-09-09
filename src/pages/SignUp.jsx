@@ -6,27 +6,25 @@ import { Link, useNavigate } from "react-router-dom";
 const Signup = () => {
   const navigate = useNavigate();
 
-  // 완성된 로직들이 아니에요! 참고만 하세요!
   const handleSignup = async (formData) => {
     try {
       await register(formData);
-      
+      // 성공 시, 원하는 페이지로 리디렉션 (예: 홈 페이지)
+      navigate("/");
     } catch (error) {
       alert("회원가입에 실패했습니다. 다시 시도해주세요.");
     }
   };
 
   return (
-    <div>
-      <div>
-        <h1 >
-          회원가입
-        </h1>
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-md">
+        <h1 className="text-2xl font-bold mb-6 text-center">회원가입</h1>
         <AuthForm mode="signup" onSubmit={handleSignup} />
-        <div>
+        <div className="mt-4 text-center">
           <p>
             이미 계정이 있으신가요?{" "}
-            <Link to="/login">
+            <Link to="/login" className="text-blue-500 hover:underline">
               로그인
             </Link>
           </p>
