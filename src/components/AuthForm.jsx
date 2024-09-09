@@ -35,16 +35,22 @@ const AuthForm = ({ mode, onSubmit }) => {
             type="text"
             name="id"
             value={formData.id}
-            onchange={handleChange}
+            onChange={handleChange}
             placeholder="아이디"
             required
+            className="w-full p-4 border border-gray-300 rounded-lg"
         />
         
         {/* 비밀번호 입력 로직 */}
         <input 
-            type=
-            
-        />
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            placeholder="비밀번호"
+            required
+            className="w-full p-4 border border-gray-300 rounded-lg"
+            />
 
         {/* 닉네임 입력 로직 */}
         {mode === "signup" && (
