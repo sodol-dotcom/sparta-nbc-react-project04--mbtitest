@@ -1,17 +1,16 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
 const Layout = ({ children, user, setUser }) => {
   const navigate = useNavigate();
 
-  // 로그인하지 않은 사용자를 로그인 페이지로 리디렉션
   useEffect(() => {
-    if (!user) {
+    // 로그인하지 않은 사용자를 로그인 페이지로 리디렉션
+    if (!user && !['/login', '/signup'].includes(window.location.pathname)) {
       navigate("/login"); // 로그인 페이지로 리디렉션
     }
   }, [user, navigate]);
 
-  // 로그아웃 처리 로직
   const handleLogout = () => {
     setUser(null); // 로그아웃 시 user 상태를 null로 변경
     navigate("/login"); // 로그인 페이지로 리디렉션
