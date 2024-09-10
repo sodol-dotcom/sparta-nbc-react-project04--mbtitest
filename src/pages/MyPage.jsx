@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { updateProfile } from "../api/auth";
+import { updateMyPage } from "../api/auth";
 
-const Profile = ({ user, setUser }) => {
+const MyPage = ({ user, setUser }) => {
   const [nickname, setNickname] = useState(user?.nickname || "");
 
   const handleNicknameChange = (e) => {
@@ -11,9 +11,16 @@ const Profile = ({ user, setUser }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await updateProfile({ nickname });
+      const token = localStorage.getItem("accessToken");
+      if (!token) {
+        alert("로그인이 필요합니다.");
+        return;
+      }
+      const updatedUser = await updateMyPage({ nickname }, token);
+      setUser(updatedUser); // 사용자 상태 업데이트
       alert("프로필이 성공적으로 업데이트되었습니다.");
     } catch (error) {
+      console.error("프로필 업데이트 실패:", error);
       alert("프로필 업데이트에 실패했습니다. 다시 시도해 주세요.");
     }
   };
@@ -46,4 +53,4 @@ const Profile = ({ user, setUser }) => {
   );
 };
 
-export default Profile;
+export default MyPage;

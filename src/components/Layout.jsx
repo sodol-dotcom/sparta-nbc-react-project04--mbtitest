@@ -1,7 +1,10 @@
+// src/components/Layout.jsx
 import React, { useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext"; // AuthContext import
 
-const Layout = ({ children, user, setUser }) => {
+const Layout = ({ children }) => {
+  const { user, setUser } = useAuth(); // AuthContext에서 user와 setUser 가져오기
   const navigate = useNavigate();
 
   useEffect(() => {

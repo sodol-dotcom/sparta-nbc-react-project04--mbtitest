@@ -1,25 +1,37 @@
-import React from "react";
 import AuthForm from "../components/AuthForm";
-import { login, getUserProfile } from "../api/auth";
+import { login, getUserProfile } from "../api/auth"; 
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext"; // AuthContext에서 user 가져오기
 
-const Login = ({ setUser }) => {
+const Login = () => {
   const navigate = useNavigate();
+  const { setUser } = useAuth();
 
   const handleLogin = async (formData) => {
     try {
-      // 로그인 API 요청
       const response = await login(formData);
 
-      // 로그인 성공 시, 사용자 프로필 정보 가져오기
-      const userProfile = await getUserProfile(response.token);
+      // 받은 응답에서 user 정보와 accessToken 가져오기
+      const token = response.accessToken;
+      const userData = {
+        id: response.userId,
+        nickname: response.nickname,
+        avatar: response.avatar,
+      };
+
+      // 토큰을 저장
+      localStorage.setItem("accessToken", token);
 
       // 사용자 상태 업데이트
-      setUser(userProfile);
+      setUser(userData);
 
-      // 로그인 후 홈 페이지로 리디렉션
+      // 홈 페이지로 리디렉션
       navigate("/");
     } catch (error) {
+      console.error(
+        "로그인 오류:",
+        error.response ? error.response.data : error.message
+      );
       alert("로그인에 실패했습니다. 다시 시도해주세요.");
     }
   };

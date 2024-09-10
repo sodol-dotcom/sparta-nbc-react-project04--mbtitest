@@ -1,6 +1,5 @@
-import React from "react";
 import AuthForm from "../components/AuthForm";
-import { register } from "../api/auth";
+import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
 const Signup = () => {
@@ -8,9 +7,13 @@ const Signup = () => {
 
   const handleSignup = async (formData) => {
     try {
-      await register(formData);
-      // 성공 시, 원하는 페이지로 리디렉션 (예: 홈 페이지)
-      navigate("/");
+      const { id, password, nickname } = formData;
+      await axios.post("https://moneyfulpublicpolicy.co.kr/register", {
+        id,
+        password,
+        nickname,
+      });
+      navigate("/"); // 회원가입 성공 시 홈 페이지로 리디렉션
     } catch (error) {
       alert("회원가입에 실패했습니다. 다시 시도해주세요.");
     }

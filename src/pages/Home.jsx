@@ -11,10 +11,10 @@ const Home = () => {
         자신의 성격 유형을 확인할 수 있도록 솔직하게 답변해 주세요.
       </p>
       <Link
-        to="/login"
+        to="/test"
         className="bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 transition-colors"
       >
-        로그인하기
+        테스트 하기
       </Link>
     </div>
   );

@@ -3,11 +3,19 @@ import TestForm from "../components/TestForm";
 import { calculateMBTI } from "../utils/mbtiCalculator";
 import { createTestResult } from "../api/testResults";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext"; // AuthContext에서 user 가져오기
 
-const Test = ({ user }) => {
+const Test = () => {
   const navigate = useNavigate();
+  const { user } = useAuth(); // AuthContext에서 user 가져오기
 
   const handleTestSubmit = async (answers) => {
+    if (!user || !user.id) {
+      console.error("사용자 정보가 없습니다.");
+      alert("로그인이 필요합니다.");
+      return;
+    }
+
     const result = calculateMBTI(answers);
     const resultData = {
       userId: user.id,
